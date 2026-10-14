@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Video Showcase</title>
+  <!-- Tailwind CSS via CDN for styling -->
+  <script src="https://jsdelivr.net"></script>
+  <style>
+    /* Aspect ratio fallback for old browsers */
+    .aspect-video { aspect-ratio: 16 / 9; }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen">
+
+  <!-- Header Section -->
+  <header class="bg-gray-800 border-b border-gray-700 py-6 px-4 shadow-md text-center">
+    <h1 class="text-3xl font-bold text-white tracking-tight">🎥 My Video Showcase</h1>
+    <p class="text-gray-400 mt-2 text-sm max-w-xl mx-auto">A curated gallery of my favorite YouTube videos, built for easy editing and instant sharing.</p>
+  </header>
+
+  <!-- Video Grid Container -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Generated video cards inject here dynamically -->
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="text-center py-10 border-t border-gray-800 text-xs text-gray-500">
+    &copy; 2026 Video Showcase. Generated smoothly.
+  </footer>
+
+  <!-- DATA & LOGIC SECTION -->
+  <script>
+    /**
+     * EASILY EDIT YOUR VIDEOS HERE:
+     * - To add a video, copy a whole block, add a comma, and paste it.
+     * - To reorder, drag the whole object block up or down.
+     * - To find the YouTube ID, look at the end of the URL (e.g., https://youtu.be -> ID is Zc2PwPuKK5c)
+     */
+    const videoData = [
+      {
+        id: "Zc2PwPuKK5c",
+        title: "Introduction to Vibe Coding",
+        description: "An overview of leveraging agentic artificial intelligence tools to build micro-projects in minutes without heavy configuration structures."
+      },
+      {
+        id: "dQw4w9WgXcQ",
+        title: "Never Gonna Give You Up",
+        description: "The classic legendary music performance tracking back through internet history. A gold standard benchmark for platform link verification."
+      },
+      {
+        id: "OAxTQE5KBnc",
+        title: "FreeBuff Terminal Coding Agent Tutorial",
+        description: "A comprehensive walk-through on setting up and optimizing terminal commands using local open-source models natively."
+      }
+    ];
+
+    // Rendering engine to convert data to HTML cards
+    function renderVideos() {
+      const grid = document.getElementById('video-grid');
+      grid.innerHTML = videoData.map(video => `
+        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-gray-500 transition duration-300 flex flex-col h-full">
+          <!-- Responsive Iframe Embed -->
+          <div class="aspect-video w-full">
+            <iframe 
+              class="w-full h-full" 
+              src="https://youtube.com{video.id}" 
+              title="${video.title}" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          <!-- Video Information Metadata -->
+          <div class="p-5 flex flex-col flex-grow">
+            <h2 class="text-xl font-bold text-white mb-2 line-clamp-2">${video.title}</h2>
+            <p class="text-gray-400 text-sm leading-relaxed flex-grow line-clamp-4">${video.description}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Run on startup
+    document.addEventListener('DOMContentLoaded', renderVideos);
+  </script>
+</body>
+</html>
